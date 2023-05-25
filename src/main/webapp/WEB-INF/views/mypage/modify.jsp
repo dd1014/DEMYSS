@@ -127,8 +127,6 @@
                </div>
 					
 		
-
-
 				
 						<!-- 프로필 사진 -->
 						<div class="col-sm-6 grid-rows-1">
