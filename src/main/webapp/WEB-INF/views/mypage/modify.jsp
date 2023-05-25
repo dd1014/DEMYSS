@@ -126,7 +126,6 @@
                   <input name="MEMBER_PIC" id="MEMBER_PIC" type="hidden" value="${member.MEMBER_PIC }" >
                </div>
 					
-		
 				
 						<!-- 프로필 사진 -->
 						<div class="col-sm-6 grid-rows-1">
