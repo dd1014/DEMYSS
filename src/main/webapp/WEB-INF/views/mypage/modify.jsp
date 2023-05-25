@@ -132,7 +132,6 @@
 							
 						</div>
 						
-						
 							<div style="margin:10px;float:left;width:40%;">
 							
 								<!-- 이메일 -->
