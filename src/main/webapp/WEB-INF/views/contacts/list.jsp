@@ -48,7 +48,7 @@ a:hover{
 }
 .main-box {
 	width:100%;
-	height:945px;
+	height:950px;
 }
 .contacts_select2 {
 	display:flex;
@@ -107,7 +107,6 @@ a:hover{
 }
 </style>
 
-<body>
   <div class="main-box">
   <div class="contacts_select">
   <div class="contacts_select2">
@@ -169,7 +168,7 @@ a:hover{
 </div>
 
 <br/>
- <%@ include file="/WEB-INF/views/module/pagination.jsp" %>
+ <%@ include file="/WEB-INF/views/module/conpagination.jsp" %>
 </div>
 
 	<script>
@@ -204,5 +203,3 @@ a:hover{
 	}
 	
  </script>
-		</body>
-		</html>

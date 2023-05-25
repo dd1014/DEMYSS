@@ -238,7 +238,7 @@ body {
 							</div>
 						</div>
 		<div class="card-footer row" style="margin-top: 0; border-top: none;display:flex;flex-direction:row;justify-content:center;">						
-			<button type="submit" id="registBtn"  onclick="regist_go();" class="btn btn-se" style="margin-right: 10px;">등 록</button>
+			<button type="submit" id="registBtn" class="btn btn-se" style="margin-right: 10px;">등 록</button>
 			<div class="col-sm-4"></div>
 			<button type="button" id="cancelBtn" onclick="CloseWindow();" class="btn btn-se"  style="margin-left: 10px;">취 소</button>
 		</div>	

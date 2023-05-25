@@ -56,7 +56,7 @@
 </style>
 <body>
       <div class="navbar text-neutral-content bg-white">
-         <a href="#">
+         <a href="/main">
             <img style="width:160px; height:55px;" src="/resource/img/logo.jpg" alt="" />
          </a>
             <div class="flex-1"></div>
@@ -189,28 +189,28 @@
             <div class="navbar text-neutral-content"  style="width:82%;">            
             <ul class="text-white" style="margin-left:auto;">
                   <li>
-                        <a href="#" class="btn btn-ghost normal-case text-xl"  style="width:130px;">
+                        <a href="/common/head" class="btn btn-ghost normal-case text-xl"  style="width:130px;">
                         <span>DashBoard</span>
                         </a>
                   </li>
                   <li>
-                        <a href="#" class="btn btn-ghost normal-case text-xl" style="width:130px;">
+                        <a href="/project/main" class="btn btn-ghost normal-case text-xl" style="width:130px;">
                               <span>Projects</span>
                         </a>
                   </li>
                   <li>
-                        <a href="#" class="btn btn-ghost normal-case text-xl" style="width:130px;">
+                        <a href="/calendar/calendar" class="btn btn-ghost normal-case text-xl" style="width:130px;">
                               <span>Calendar</span>
                         </a>
                   </li>
                   <li>
-                        <a href="#" class="btn btn-ghost normal-case text-xl" style="width:130px;">
+                        <a href="/tasks/list" class="btn btn-ghost normal-case text-xl" style="width:130px;">
                               <span>Tasks</span>
                         </a>
                   </li>
 
                   <li>
-                        <a href="#" class="btn btn-ghost normal-case text-xl" style="width:130px;">
+                        <a href="/contacts/list" class="btn btn-ghost normal-case text-xl" style="width:130px;">
                               <span>Contacts</span>
                         </a>
                   </li>

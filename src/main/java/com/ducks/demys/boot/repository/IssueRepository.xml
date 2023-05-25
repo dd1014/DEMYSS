@@ -3,45 +3,118 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.ducks.demys.boot.repository.IssueRepository">
-	<select id="getIssueList" resultType="issue">
+	<sql id="search">
+		<if test="ISSUE_IMP != null and ISSUE_IMP != 0">
+			WHERE ISSUE.ISSUE_IMP LIKE '%'||#{ISSUE_IMP}||'%' 
+		</if>
+		<if test="MEMBER_NUM != null and MEMBER_NUM != 0">
+			AND PROJECTS.MEMBER_NUM = #{MEMBER_NUM}
+		</if>
+	</sql>
+	
+	<sql id="orderby">
+		<if test="SORT =='end'.toString()">
+			ORDER BY PROJECTS.PJ_ENDDATE ASC
+		</if>
+		<if test="SORT =='reg'.toString()">
+			ORDER BY PROJECTS.PJ_REGDATE DESC
+		</if>
+	</sql>
+	
+	<select id="getIssueListForDashboard" resultType="issue">
+      SELECT ISSUE.*, MEMBER_NAME
+      FROM ISSUE
+      JOIN MEMBER
+      ON ISSUE.MEMBER_NUM = MEMBER.MEMBER_NUM
+      ORDER BY ISSUE_NUM DESC
+   </select>
+
+	<select id="getIssueListByPJ_NUM" resultType="Issue">
+		SELECT i.*, m.MEMBER_NAME
+		FROM ISSUE i, MEMBER m
+		WHERE PJ_NUM = #{PJ_NUM}
+		and i.MEMBER_NUM = m.MEMBER_NUM
+	</select>
+	
+<!-- 	<select id="getIssueList" resultType="issue">
 		SELECT *
 		FROM ISSUE
 		ORDER BY ISSUE_NUM DESC
-	</select>
-	<select id="getIssueListByPJ_NUM" resultType="Issue">
-		SELECT *
-		FROM ISSUE
-		WHERE PJ_NUM=#{PJ_NUM}
-	</select>
+	</select> -->
+	
 	<select id="getIssueListByMEMBER_NUM" resultType="Issue">
-		SELECT *
-		FROM ISSUE
+		SELECT i.*, m.MEMBER_NAME
+		FROM ISSUE i, MEMBER m
 		WHERE MEMBER_NUM=#{MEMBER_NUM}
 	</select>
-	<select id="getIssueByISSUE_NUM" resultType="Issue">
-		SELECT *
-		FROM ISSUE
-		WHERE ISSUE_NUM=#{ISSUE_NUM}
+	
+	<select id="getIssueReplyListByISSUE_NUM" resultType="IssueReply">
+		SELECT i.*, m.MEMBER_NAME
+		FROM ISSUEREPLY i, MEMBER m
+		WHERE ISSUERE_NUM=#{ISSUE_NUM}
+        and m.member_num = i.member_num
 	</select>
+	
+	<select id="getIssueByISSUERE_NUM" resultType="IssueReply">
+		SELECT *
+		FROM ISSUEREPLY
+		WHERE ISSUERE_NUM=#{ISSUERE_NUM}
+	</select>
+	
+	<select id="getIssueByISSUE_NUM" resultType="Issue">
+		SELECT i.*, m.MEMBER_NAME
+		FROM ISSUE i, MEMBER m
+		WHERE i.MEMBER_NUM = m.MEMBER_NUM
+		and ISSUE_NUM=#{ISSUE_NUM}
+	</select>
+	
 	<select id="selectIssueSequenceNextValue" resultType="int">
 		SELECT
 		ISSUE_seq.nextVal
 		FROM DUAL
 	</select>
-	<insert id="registIssue">
+	
+<!-- 	<insert id="registIssue">
 		INSERT INTO
-		ISSUE(ISSUE_TITLE,ISSUE_CONTENT,ISSUE_IMP,ISSUE_STATUS,ISSUE_DEADLINE,ISSUE_ENDDATE,MEMBER_NUM,PJ_NUM)
-		VALUES(#{ISSUE_TITLE},#{ISSUE_CONTENT},#{ISSUE_IMP},#{ISSUE_STATUS},#{ISSUE_DEADLINE},#{ISSUE_ENDDATE},#{MEMBER_NUM},#{PJ_NUM})
+		ISSUE(ISSUE_NUM,ISSUE_TITLE,ISSUE_CONTENT,ISSUE_IMP,ISSUE_STATUS,ISSUE_REGDATE,ISSUE_DEADLINE,MEMBER_NUM,PJ_NUM)
+		VALUES(#{ISSUE_NUM},#{ISSUE_TITLE},#{ISSUE_CONTENT},#{ISSUE_IMP},#{ISSUE_STATUS},#{ISSUE_REGDATE},#{ISSUE_DEADLINE},#{MEMBER_NUM},#{PJ_NUM})
 	</insert>
+	
 	<update id="modifyIssue">
 		UPDATE ISSUE
 		SET
 		ISSUE_TITLE=#{ISSUE_TITLE},ISSUE_CONTENT=#{ISSUE_CONTENT},ISSUE_IMP=#{ISSUE_IMP},ISSUE_STATUS=#{ISSUE_STATUS},ISSUE_DEADLINE=#{ISSUE_DEADLINE},ISSUE_ENDDATE=#{ISSUE_ENDDATE},MEMBER_NUM=#{MEMBER_NUM},PJ_NUM=#{PJ_NUM},ISSUE_UPDATEDATE=SYSDATE
 		WHERE ISSUE_NUM=#{ISSUE_NUM}
 	</update>
+	
 	<delete id="removeIssue">
 		DELETE
 		FROM ISSUE
 		WHERE ISSUE_NUM=#{ISSUE_NUM}
+	</delete> -->
+	
+	<select id="getIssuePjListCount" resultType="int">
+		SELECT COUNT(I.PJ_NUM)
+		FROM ISSUE I, PROJECTS P
+		WHERE I.PJ_NUM = P.PJ_NUM and I.PJ_NUM = #{PJ_NUM}
+	</select>
+	
+	<insert id="registIssueReply">
+		INSERT INTO
+		ISSUEREPLY(ISSUERE_CONTENT,MEMBER_NUM,ISSUE_NUM)
+		VALUES(#{ISSUERE_CONTENT},#{MEMBER_NUM},#{ISSUE_NUM})
+	</insert>
+	
+	<update id="modifyIssueReply">
+		UPDATE ISSUEREPLY
+		SET
+		ISSUERE_CONTENT=#{ISSUERE_CONTENT},MEMBER_NUM=#{MEMBER_NUM},ISSUE_NUM=#{ISSUE_NUM},ISSUERE_UPDATEDATE=SYSDATE
+		WHERE ISSUERE_NUM=#{ISSUERE_NUM}
+	</update>
+	
+	<delete id="removeIssueReply">
+		DELETE
+		FROM ISSUEREPLY
+		WHERE ISSUERE_NUM=#{ISSUERE_NUM}
 	</delete>
 </mapper>

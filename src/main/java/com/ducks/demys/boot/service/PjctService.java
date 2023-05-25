@@ -15,6 +15,16 @@ public class PjctService {
 	public PjctService(PjctRepository pjctRepository) {
 		this.pjctRepository= pjctRepository;
 	}
+	public List<Pjct> getContactsPjctList(){
+		return pjctRepository.getContactsPjctList();
+	}
+	public int getContactsPjctListCount(int PJ_NUM) {
+		return pjctRepository.getContactsPjctListCount(PJ_NUM);
+	}
+	public List<Pjct> getContactsPjctList(int PJ_NUM){
+		return pjctRepository.getContactsPjctList(PJ_NUM);
+	}
+	
 	
 	public List<Pjct> getPjctListByPJ_NUM(int PJ_NUM){
 		return pjctRepository.getPjctListByPJ_NUM(PJ_NUM);
@@ -28,9 +38,9 @@ public class PjctService {
 		return pjctRepository.getPjctByPjct_NUM(PJCT_NUM);
 	}
 	
-	public void registPjct(Pjct Pjct) {
-		Pjct.setPJCT_NUM(pjctRepository.selectPjctSequenceNextValue());
-		pjctRepository.registPjct(Pjct);
+	public void registPjct(Pjct pjct) {
+		pjct.setPJCT_NUM(pjctRepository.selectPjctSequenceNextValue());
+		pjctRepository.registPjct(pjct);
 	}
 	
 	public void modifyPjct(Pjct Pjct) {
@@ -40,4 +50,5 @@ public class PjctService {
 	public void removePjct(int PJCT_NUM) {
 		pjctRepository.removePjct(PJCT_NUM);
 	}
+	
 }

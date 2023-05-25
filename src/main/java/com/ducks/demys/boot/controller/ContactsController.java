@@ -42,9 +42,10 @@ public class ContactsController {
 	
 	@RequestMapping("/contacts/doRegist")
 	@ResponseBody
-	public String registContacts(Model model, Contacts contacts, int CT_TYPE, String phoneNumber1, String phoneNumber2, String phoneNumber3,String ct_fax1, 
+	public String registContacts(Model model, Contacts contacts, String CT_NAME, int CT_TYPE, String phoneNumber1, String phoneNumber2, String phoneNumber3,String ct_fax1, 
 			String ct_fax2, String ct_fax3, String ct_mg_tel1, String ct_mg_tel2, String ct_mg_tel3, String postcode, String address, String detailAddress, String extraAddress) {
 		
+		if(CT_NAME != null) {
 		String fullAddress = "";
 		if (!address.isEmpty() && !detailAddress.isEmpty() && !extraAddress.isEmpty()) {
 		    fullAddress = "(" + postcode + ") " + address + " " + detailAddress + " " + extraAddress;
@@ -71,6 +72,7 @@ public class ContactsController {
 	    contacts.setCT_TYPE(CT_TYPE);
 
 	    contactsService.registContacts(contacts);
+		}
 
 	    String script = "<script>alert('업체 등록이 완료되었습니다.');window.close(); window.opener.location.href='/contacts/list';</script>";
 	    return script;

@@ -10,6 +10,8 @@ import com.ducks.demys.boot.vo.Pjhr;
 public interface PjhrRepository {
 
 	public List<Pjhr> getPjhrListByPJ_NUM(int PJ_NUM);
+	
+	public int getPjhrListByPJ_NUMCount(int PJ_NUM);
 
 	public List<Pjhr> getPjhrListByMEMBER_NUM(int MEMBER_NUM);
 	

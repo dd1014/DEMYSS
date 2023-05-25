@@ -8,7 +8,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
 
 import com.ducks.demys.boot.command.ContactsSearchCriteria;
-import com.ducks.demys.boot.command.PageMaker;
+import com.ducks.demys.boot.command.CPageMaker;
 import com.ducks.demys.boot.repository.ContactsRepository;
 import com.ducks.demys.boot.vo.Contacts;
 
@@ -28,7 +28,7 @@ public class ContactsService {
 		List<Contacts> contactsList = contactsRepository.getSelectSearchContactsList(cri, rowbounds);
 		dataMap.put("contactsList", contactsList);
 
-		PageMaker pageMaker = new PageMaker();
+		CPageMaker pageMaker = new CPageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(contactsRepository.selectSearchContactsListCount(cri));
 
@@ -66,6 +66,20 @@ public class ContactsService {
 	
 	public void removeContacts(int CT_NUM) {
 		contactsRepository.removeContacts(CT_NUM);
+	}
+	
+	public List<Contacts> getContactsListPjRegist(){
+		List<Contacts>  contactsList = contactsRepository.getContactsListPjRegist();
+		return contactsList;
+	}
+	public List<Contacts> getContactsListPjRegistSearch(String searchType, String keyword){
+		List<Contacts> contactsList = contactsRepository.getContactsListPjRegistSearch(searchType, keyword); 
+		return contactsList;
+	}
+
+	public List<Contacts> getContactsPjctList(){
+		List<Contacts>  contactsList = contactsRepository.getContactsPjctList();
+		return contactsList;
 	}
 
 }

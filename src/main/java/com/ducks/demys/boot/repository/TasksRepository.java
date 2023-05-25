@@ -11,6 +11,8 @@ public interface TasksRepository {
 
 	public List<Tasks> getTasksListByMEMBER_NUM(int MEMBER_NUM);
 
+	public List<Tasks> getTasksListByTASKS_STATUS(int TASKS_STATUS);
+
 	public List<Tasks> getTasksList();
 	
 	public Tasks getTasksByTASKS_NUM(int TASKS_NUM);
@@ -21,6 +23,10 @@ public interface TasksRepository {
 	
 	public void modifyTasks(Tasks tasks);
 	
+	public void modifyTasksStatus(int TASKS_NUM, int TASKS_STATUS);
+	
 	public void removeTasks(int TASKS_NUM);
+
+	public void modifyTasksShare(int TASKS_NUM, int TASKS_SHARE);
 	
 }

@@ -54,7 +54,7 @@ public class MemberController {
 
 		if (member != null && member.getMEMBER_PW().equals(MEMBER_PW)) {
 			session.setAttribute("member", member);
-			return "redirect:/contacts/list";
+			return "redirect:/main";
 		} else {
 			if (member == null || !member.getMEMBER_ID().equals(MEMBER_ID)) {
 				model.addAttribute("invalidId", "Invalid login ID.");
@@ -274,5 +274,71 @@ public class MemberController {
 
 		return false;
 	}
+	
+	@RequestMapping("/mypage/myPage")
+	public String showMyPage(Model model, HttpSession session) {
 
+		Member member = (Member) session.getAttribute("member");
+		String MEMBER_ID = member.getMEMBER_ID();
+		if (MEMBER_ID == null) {
+			return "redirect:/member/login";
+		}
+		memberService.getMemberByMEMBER_ID(MEMBER_ID);
+		model.addAttribute("member", member);
+
+		return "mypage/myPage";
+	}
+
+	@RequestMapping("/mypage/CheckPassword")
+	public String CheckPassword() {
+
+		return "mypage/myPage";
+	}
+
+	@RequestMapping("/mypage/doCheckPassword")
+	public String doCheckPassword(HttpSession session, String loginPwInput, Model model, String MEMBER_ID) {
+
+	    Member member = (Member) session.getAttribute("member");
+	    String MEMBER_PW = member.getMEMBER_PW();
+
+	    if (member != null && MEMBER_PW.equals(loginPwInput)) {
+	        // 비밀번호 일치
+	        model.addAttribute("member", member);
+	        return "redirect:/mypage/modify";
+	    } else {
+	        // 비밀번호 일치하지 않는 경우
+	        model.addAttribute("message", "비밀번호가 일치하지 않습니다.");
+	        model.addAttribute("alertScript", "alert('비밀번호가 일치하지 않습니다.');");
+	        return "mypage/myPage";
+	    }
+	}
+
+	@GetMapping("/mypage/modify")
+	public String modify(HttpSession session, Model model) {
+
+		Member member = (Member) session.getAttribute("member");
+		String MEMBER_ID = member.getMEMBER_ID();
+
+		memberService.getMemberByMEMBER_ID(MEMBER_ID);
+		model.addAttribute("member", member);
+		//System.out.println("member:"+member);
+		return "mypage/modify";
+	}
+
+	@PostMapping("/mypage/doModify")
+	public String doModify(HttpSession session, Member member, String MEMBER_PIC, int MEMBER_NUM, String MEMBER_ID, String MEMBER_PW,
+	        String MEMBER_PHONE, String MEMBER_EMAIL, Model model) {
+
+	    memberService.modifyMember(member);
+	    // 권한 정보 다시 조회
+	    Member updatedMember = memberService.getMemberByMEMBER_ID(MEMBER_ID);
+	    model.addAttribute("member", updatedMember);
+
+	    // 계정 수정 완료 후 버튼 숨김 상태를 전달
+	    model.addAttribute("hideModifyButton", true);
+
+	    // mypage.jsp로 리다이렉트
+	    return "mypage/myPage";
+	}
 }
+

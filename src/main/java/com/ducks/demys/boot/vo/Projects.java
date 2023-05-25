@@ -12,7 +12,9 @@ public class Projects {
 	private int PJ_NUM;
 	private String PJ_NAME;
 	private Date PJ_STARTDATE;
+	private String STRING_STARTDATE;
 	private Date PJ_ENDDATE;
+	private String STRING_ENDDATE;
 	private Date PJ_REGDATE;
 	private Date PJ_UPDATEDATE;
 	private int PJ_IMP;
@@ -24,4 +26,8 @@ public class Projects {
 	private int PJ_PRICE;
 	private int MEMBER_NUM;
 	private int CT_NUM;
+	
+	private String CT_NAME;
+	private String MEMBER_NAME;
+	private int ISSUE_COUNT;
 }

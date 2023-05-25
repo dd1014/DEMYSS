@@ -2,6 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ducks.demys.boot.repository.MemberRepository">
 
+	<sql id="search">
+		<if test="searchType == 'mn'.toString()">
+			and MEMBER_NAME like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'md'.toString()">
+			and MEMBER_DEP like '%'||#{keyword}||'%'
+		</if>
+	</sql>
+	
+	<select id="getMemberListSearch" resultType="Member">
+		SELECT * 
+		FROM MEMBER 
+		WHERE MEMBER_NUM IS NOT NULL
+		<include refid="search"/>
+		ORDER BY MEMBER_NUM DESC
+	</select>
+
 	<select id="getMemberList" resultType="member">
 		SELECT * 
 		FROM MEMBER 
@@ -43,6 +60,13 @@
 		FROM DUAL
 	</select>
 	
+	<select id="getMemberByMEMBER_DEP" resultType="Member">
+		SELECT * 
+		FROM MEMBER 
+		WHERE MEMBER_DEP=#{MEMBER_DEP}
+	</select>
+	
+	
 	<!-- 인증번호 확인 -->
 	<select id="verifyVerificationCode" parameterType="String" resultType="String">
 	    SELECT VERTIFICATION_CODE
@@ -72,7 +96,7 @@
 	<update id="modifyMember" parameterType="member">
 		UPDATE MEMBER 
 		SET 
-		MEMBER_PW=#{MEMBER_PW},MEMBER_PIC=#{MEMBER_PIC},MEMBER_PHONE=#{MEMBER_PHONE},MEMBER_EMAIL=#{MEMBER_EMAIL},MEMBER_DEP=#{MEMBER_DEP},UPDATEDATE=SYSDATE
+		MEMBER_PW=#{MEMBER_PW},MEMBER_PIC=#{MEMBER_PIC},MEMBER_PHONE=#{MEMBER_PHONE},MEMBER_EMAIL=#{MEMBER_EMAIL},MEMBER_UPDATEDATE=SYSDATE
 		WHERE MEMBER_NUM=#{MEMBER_NUM}
 	</update>
 	

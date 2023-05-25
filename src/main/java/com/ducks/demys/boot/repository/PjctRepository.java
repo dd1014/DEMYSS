@@ -9,6 +9,12 @@ import com.ducks.demys.boot.vo.Pjct;
 @Mapper
 public interface PjctRepository {
 
+	public List<Pjct> getContactsPjctList();
+	
+	public List<Pjct> getContactsPjctList(int PJ_NUM);
+	
+	public int getContactsPjctListCount(int PJ_NUM);
+	
 	public List<Pjct> getPjctListByPJ_NUM(int PJ_NUM);
 
 	public List<Pjct> getPjctListByCT_NUM(int CT_NUM);

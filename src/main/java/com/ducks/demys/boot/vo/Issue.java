@@ -20,5 +20,10 @@ public class Issue {
 	private Date ISSUE_ENDDATE;
 	private int MEMBER_NUM;
 	private int PJ_NUM;
+	private String MEMBER_NAME;
+	private String PJ_NAME;
+	private String CT_NAME;
+	private int ISSUEREPLY_COUNT;
+	
 
 }

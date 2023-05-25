@@ -44,5 +44,9 @@ public interface MemberRepository {
 	//인사과 코드 인증
 	public Member findByPassword(String newAuthority, String authority_code);
 
+	public List<Member> getMemberListSearch(String searchType, String keyword);
+
+	public List<Member> getMemberByMEMBER_DEP(String MEMBER_DEP);
+
 
 }

@@ -18,5 +18,6 @@ public class Product {
 	private Date PRODUCT_UPDATEDATE;
 	private int MEMBER_NUM;
 	private int PJ_NUM;
+	private String MEMBER_NAME;
 
 }

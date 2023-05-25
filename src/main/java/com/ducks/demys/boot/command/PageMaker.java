@@ -1,35 +1,35 @@
 package com.ducks.demys.boot.command;
 
+
 public class PageMaker {
-	
+
 	private int totalCount; // 전체 행의 개수
 	private int startPage = 1; // 시작 페이지 번호
 	private int endPage = 1; // 마지막 페이지 번호
 	private int realEndPage; // 끝 페이지 번호
 	private boolean prev; // 이전페이지 버튼 유무
 	private boolean next; // 다음페이지 버튼 유무
-
-	private int displayPageNum = 13; // 한 페이지에 보여줄 페이지번호 개수
-
-	ContactsSearchCriteria cri = new ContactsSearchCriteria();
 	
-	// starPage,endPage, prev, next 설정. by totalCount
-	private void calcData() {
-		endPage = (int) (Math.ceil(cri.getPage() / (double) displayPageNum) * displayPageNum);
-		startPage = (endPage - displayPageNum) + 1;
+	private int displayPageNum =5;
+	
+	SearchCriteria cri = new SearchCriteria();
 
-		realEndPage = (int) (Math.ceil(totalCount / (double) cri.getPerPageNum()));
-
-		if (startPage < 0) {
+	private void calcDate() {
+		endPage = (int)(Math.ceil(cri.getPage()/(double)displayPageNum)*displayPageNum);
+		startPage = (endPage-displayPageNum)+1;
+		
+		realEndPage = (int)(Math.ceil(totalCount/(double)cri.getPerPageNum()));
+	
+		if(startPage<0) {
 			startPage = 1;
 		}
-		if (endPage > realEndPage) {
+		if(endPage >realEndPage) {
 			endPage = realEndPage;
 		}
-
 		prev = startPage == 1 ? false : true;
 		next = endPage < realEndPage ? true : false;
 	}
+	
 	
 	public int getTotalCount() {
 		return totalCount;
@@ -37,7 +37,7 @@ public class PageMaker {
 
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
-		calcData();
+		calcDate();
 	}
 
 	public int getStartPage() {
@@ -88,12 +88,13 @@ public class PageMaker {
 		this.displayPageNum = displayPageNum;
 	}
 
-	public ContactsSearchCriteria getCri() {
+	public SearchCriteria getCri() {
 		return cri;
 	}
 
-	public void setCri(ContactsSearchCriteria cri) {
+	public void setCri(SearchCriteria cri) {
 		this.cri = cri;
 	}
+	
 	
 }

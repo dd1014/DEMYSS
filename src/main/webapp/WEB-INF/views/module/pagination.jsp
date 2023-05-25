@@ -17,18 +17,18 @@
 }
 
 .pagination a.active {
-  background-color: #153A66;
+  background-color: #4CAF50;
   color: white;
 }
 
 .pagination a:hover:not(.active) {background-color: #ddd;}
 </style>
 
-<form id="jobForm" method="get">	
-	<input type="hidden" name="searchType" value="">
-	<input type="hidden" name="keyword" value="">
-	<input type="hidden" name="page" value="">
-	<input type="hidden" name="CT_TYPE" value="">
+<form id="searchForm" method="get">	
+	<input type='hidden' name="page" value=""/>
+	<input type='hidden' name="perPageNum" value="5"/>
+	<input type='hidden' name="searchType" value="" />
+	<input type='hidden' name="keyword" value="" />
 </form>
 
 
@@ -37,7 +37,7 @@
 	<a href="javascript:list_go(${pageMaker.prev ? pageMaker.startPage-1 : cri.page });" class="page-link">&lt;</a>
 	
 	<c:forEach var="pageNum" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-		<a href="javascript:list_go(${pageNum}, 'list');" class="page-link ${cri.page == pageNum ? 'active' : ''}">${pageNum}</a>
+		<a href="javascript:list_go(${pageNum}, 'main');" class="page-link ${cri.page == pageNum ? 'active' : ''}">${pageNum}</a>
 	</c:forEach>
 	
 	<a href="javascript:list_go(${pageMaker.next ? pageMaker.endPage+1 : cri.page});" class="page-link">&gt;</a>

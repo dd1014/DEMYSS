@@ -20,6 +20,11 @@ public class MeetingBookService {
 		return meetingBookRepository.getMeetingBookListByPJ_NUM(PJ_NUM);
 	}
 	
+	public List<MeetingBook> getSearchMeetingbook(Object PJ_NUM, String searchKeywordTypeCode, String searchKeyword) {
+		List<MeetingBook> meetingbook = meetingBookRepository.getSearchMeetingbook(PJ_NUM, searchKeywordTypeCode, searchKeyword);
+		return meetingbook;
+	}
+	
 	public MeetingBook getMeetingBookByMB_NUM(int MB_NUM){
 		return meetingBookRepository.getMeetingBookByMB_NUM(MB_NUM);
 	}

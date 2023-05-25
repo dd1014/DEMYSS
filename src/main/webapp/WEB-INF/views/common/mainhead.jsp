@@ -175,7 +175,7 @@ a:hover{
                         <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
                               style="color: black;">
                               <li>
-                                    <a href="#" class="justify-between"> MyPage </a>
+                                    <a href="/mypage/myPage" class="justify-between"> MyPage </a>
                               </li>
                               <li>
 								    <a href="/member/logout" > Logout </a>
@@ -188,28 +188,28 @@ a:hover{
             <div class="navbar text-neutral-content" style="width: 100%;">
                   <ul class="text-white" style="margin-left: auto;">
                         <li>
-                              <a href="#" class="btn btn-ghost normal-case text-xl" style="width: 130px;">
+                              <a href="/common/head" class="btn btn-ghost normal-case text-xl" style="width: 130px;">
                                     <span>DashBoard</span>
                               </a>
                         </li>
                         <li>
-                              <a href="#" class="btn btn-ghost normal-case text-xl" style="width: 130px;">
+                              <a href="/project/main" class="btn btn-ghost normal-case text-xl" style="width: 130px;">
                                     <span>Projects</span>
                               </a>
                         </li>
                         <li>
-                              <a href="#" class="btn btn-ghost normal-case text-xl" style="width: 130px;">
+                              <a href="/calendar/calendar" class="btn btn-ghost normal-case text-xl" style="width: 130px;">
                                     <span>Calendar</span>
                               </a>
                         </li>
                         <li>
-                              <a href="#" class="btn btn-ghost normal-case text-xl" style="width: 130px;">
+                              <a href="/tasks/list" class="btn btn-ghost normal-case text-xl" style="width: 130px;">
                                     <span>Tasks</span>
                               </a>
                         </li>
 
                         <li>
-                              <a href="#" class="btn btn-ghost normal-case text-xl" style="width: 130px;">
+                              <a href="/contacts/list" class="btn btn-ghost normal-case text-xl" style="width: 130px;">
                                     <span>Contacts</span>
                               </a>
                         </li>

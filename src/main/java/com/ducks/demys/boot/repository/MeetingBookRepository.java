@@ -11,6 +11,8 @@ public interface MeetingBookRepository {
 
 	public List<MeetingBook> getMeetingBookListByPJ_NUM(int PJ_NUM);
 	
+	public List<MeetingBook> getSearchMeetingbook(Object PJ_NUM, String searchKeywordTypeCode,	String searchKeyword);
+	
 	public MeetingBook getMeetingBookByMB_NUM(int MB_NUM);
 	
 	public int selectMeetingBookSequenceNextValue();

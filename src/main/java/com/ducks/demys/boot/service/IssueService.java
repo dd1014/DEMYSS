@@ -16,18 +16,23 @@ public class IssueService {
 		this.issueRepository= issueRepository;
 	}
 	
-	public List<Issue> getIssueList(){
-		return issueRepository.getIssueList();
+//	public List<Issue> getIssueList(){
+//		return issueRepository.getIssueList();
+//	}
+	
+	public List<Issue> getIssueListForDashboard(){
+		return issueRepository.getIssueListForDashboard();
 	}
 	
-	public List<Issue> getIssueListByMEMBER_NUM(int MEMBER_NUM){
-		return issueRepository.getIssueListByMEMBER_NUM(MEMBER_NUM);
-	}
+//	public List<Issue> getIssueListByMEMBER_NUM(int MEMBER_NUM){
+//		return issueRepository.getIssueListByMEMBER_NUM(MEMBER_NUM);
+//	}
+	
 	
 	public Issue getIssueByISSUE_NUM(int ISSUE_NUM) {
 		return issueRepository.getIssueByISSUE_NUM(ISSUE_NUM);
 	}
-	
+
 	public void registIssue(Issue issue) {
 		issue.setISSUE_NUM(issueRepository.selectIssueSequenceNextValue());
 		issueRepository.registIssue(issue);
@@ -40,4 +45,9 @@ public class IssueService {
 	public void removeIssue(int ISSUE_NUM) {
 		issueRepository.removeIssue(ISSUE_NUM);
 	}
+
+	public List<Issue> getIssueListByPJ_NUM(int PJ_NUM){
+		return issueRepository.getIssueListByPJ_NUM(PJ_NUM);
+	}
+
 }

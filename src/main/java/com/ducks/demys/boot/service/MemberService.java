@@ -168,4 +168,14 @@ public class MemberService {
 		return memberRepository.findByPassword(newAuthority, authority_code);
 	}
 
+	public List<Member> getMemberListSearch(String searchType, String keyword){
+		List<Member> memberList = memberRepository.getMemberListSearch(searchType, keyword);
+		
+		return memberList;
+	}
+
+	public List<Member> getMemberByMEMBER_DEP(String MEMBER_DEP){
+		return memberRepository.getMemberByMEMBER_DEP(MEMBER_DEP);
+	}
+
 }

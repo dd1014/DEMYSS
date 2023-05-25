@@ -16,5 +16,6 @@ public class MeetingBook {
 	private Date MB_UPDATEDATE;
 	private int MEMBER_NUM;
 	private int PJ_NUM;
+	private String MEMBER_NAME;
 
 }

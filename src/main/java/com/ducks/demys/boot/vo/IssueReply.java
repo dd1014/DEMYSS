@@ -15,5 +15,6 @@ public class IssueReply {
 	private Date ISSUERE_UPDATEDATE;
 	private int MEMBER_NUM;
 	private int ISSUE_NUM;
+	private String MEMBER_NAME;
 
 }

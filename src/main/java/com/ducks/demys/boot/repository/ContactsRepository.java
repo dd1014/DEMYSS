@@ -32,4 +32,10 @@ public interface ContactsRepository {
 	
 	public void removeContacts(int CT_NUM);
 	
+	public List<Contacts> getContactsListPjRegist();
+	
+	public List<Contacts> getContactsListPjRegistSearch(String searchType, String keyword);
+
+	public List<Contacts> getContactsPjctList();
+	
 }

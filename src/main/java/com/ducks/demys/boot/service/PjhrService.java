@@ -19,6 +19,9 @@ public class PjhrService {
 	public List<Pjhr> getPjhrListByPJ_NUM(int PJ_NUM){
 		return pjhrRepository.getPjhrListByPJ_NUM(PJ_NUM);
 	}
+	public int getPjhrListByPJ_NUMCount(int PJ_NUM){
+		return pjhrRepository.getPjhrListByPJ_NUMCount(PJ_NUM);
+	}
 	
 	public List<Pjhr> getPjhrListByMEMBER_NUM(int MEMBER_NUM){
 		return pjhrRepository.getPjhrListByMEMBER_NUM(MEMBER_NUM);
@@ -30,6 +33,8 @@ public class PjhrService {
 	
 	public void registPjhr(Pjhr Pjhr) {
 		Pjhr.setPJHR_NUM(pjhrRepository.selectPjhrSequenceNextValue());
+		System.out.println(Pjhr);
+		System.out.println("번호: "+ Pjhr.getPJHR_NUM());
 		pjhrRepository.registPjhr(Pjhr);
 	}
 	
