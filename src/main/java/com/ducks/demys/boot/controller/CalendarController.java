@@ -51,8 +51,8 @@ public class CalendarController {
 	//달력리스트조회
 	@RequestMapping("/calendar/getCalendar")
 	@ResponseBody
-	public List<Calendar> getCalendar() {
-		List<Calendar> calendar = calendarService.getCalendarList(2);
+	public List<Calendar> getCalendar(int MEMBER_NUM) {
+		List<Calendar> calendar = calendarService.getCalendarList(MEMBER_NUM);
 		
 		return calendar;
 	}
@@ -104,7 +104,7 @@ public class CalendarController {
 		
 		
 		Calendar regsc=sc;
-		calendarService.modifyCalendar(regsc);
+		//calendarService.modifyCalendar(regsc);
 		System.out.println("수정완:"+regsc);
 	}
 	

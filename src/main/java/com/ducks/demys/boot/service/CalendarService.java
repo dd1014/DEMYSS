@@ -17,7 +17,7 @@ public class CalendarService {
 	}
 
 	public List<Calendar> getCalendarList(int MEMBER_NUM) {
-		return calendarRepository.getCalendarList(2);
+		return calendarRepository.getCalendarList(MEMBER_NUM);
     }
 	
 	 public void registCalendar(Calendar sc) {
@@ -40,7 +40,7 @@ public class CalendarService {
 	}
 	
 	public List<Calendar> getModal_PJList(int MEMBER_NUM) {
-		return calendarRepository.getModal_PJList(2);
+		return calendarRepository.getModal_PJList(MEMBER_NUM);
     }
 	
 }

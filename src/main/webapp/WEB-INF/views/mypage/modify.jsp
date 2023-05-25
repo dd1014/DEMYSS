@@ -93,15 +93,15 @@
 	<div class="container" style="margin:0 auto; margin-top:10px;">
 	
 	
-	<form name="Modiform" action="/mypage/doModify" method="post">
 
-		<div style="display:flex;justify-content:flex-end;margin-left:20px;width:87%;height:70px;padding-top:20px;">	
+		<div style="display:flex;justify-content:flex-end; margin-bottom:10px;">	
 				<button onclick="modify_submit();"  style="font-size: 15px; width: 110px; height: 40px; background-color: #153A66; color: white; border-radius: 8px;margin-right:10px;">수정</button>
-				<button style="font-size: 15px; width: 110px; height: 40px; background-color: #153A66; color: white; border-radius: 8px;">취소</button>
+				<button onclick="window.location.href='/mypage/myPage'" style="font-size: 15px; width: 110px; height: 40px; background-color: #153A66; color: white; border-radius: 8px;">취소</button>
 		</div>
 	
 
 
+	<form name="Modiform" action="/mypage/doModify" method="post">
 	
 
 				<!-- 프로필 -->
@@ -193,7 +193,7 @@
 										</div>
 										&nbsp;&nbsp;&nbsp;
 										<!-- 비밀번호 정보칸 -->
-										<input value="${member.MEMBER_PW }" id="MEMBER_PW" name="MEMBER_PW" onchange="check_pw()" value="" placeholder="비밀번호를 입력하세요." class=" input input-bordered w-full max-w-xs" style="line-height:35px;height:35px;width:100%; background-color: #fffff;" />
+										<input type="password" value="${member.MEMBER_PW }" id="MEMBER_PW" name="MEMBER_PW" onchange="check_pw()" value="" placeholder="비밀번호를 입력하세요." class=" input input-bordered w-full max-w-xs" style="line-height:35px;height:35px;width:100%; background-color: #fffff;" />
 										
 									</div>
 									

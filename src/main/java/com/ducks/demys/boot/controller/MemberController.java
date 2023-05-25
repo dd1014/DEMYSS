@@ -147,6 +147,7 @@ public class MemberController {
 				oldFile.delete();
 			}
 		}
+		
 
 		return fileName;
 	}
@@ -295,6 +296,7 @@ public class MemberController {
 		return "mypage/myPage";
 	}
 
+	//수정함
 	@RequestMapping("/mypage/doCheckPassword")
 	public String doCheckPassword(HttpSession session, String loginPwInput, Model model, String MEMBER_ID) {
 
@@ -312,33 +314,49 @@ public class MemberController {
 	        return "mypage/myPage";
 	    }
 	}
-
+	
+	//수정함
 	@GetMapping("/mypage/modify")
 	public String modify(HttpSession session, Model model) {
-
+		
 		Member member = (Member) session.getAttribute("member");
 		String MEMBER_ID = member.getMEMBER_ID();
 
 		memberService.getMemberByMEMBER_ID(MEMBER_ID);
+
+		String picture = MakeFileName.parseFileNameFromUUID(member.getMEMBER_PIC(), "\\$\\$");
+		member.setMEMBER_PIC(picture);
 		model.addAttribute("member", member);
-		//System.out.println("member:"+member);
+			
 		return "mypage/modify";
 	}
 
+	//수정함	//수정중..
 	@PostMapping("/mypage/doModify")
-	public String doModify(HttpSession session, Member member, String MEMBER_PIC, int MEMBER_NUM, String MEMBER_ID, String MEMBER_PW,
+	public String doModify(HttpSession session, Member member, MultipartFile pictureFile, String MEMBER_PIC, int MEMBER_NUM, String MEMBER_ID, String MEMBER_PW,
 	        String MEMBER_PHONE, String MEMBER_EMAIL, Model model) {
+	
+	    String oldPicture = memberService.getMemberByMEMBER_ID(member.getMEMBER_ID()).getMEMBER_PIC();
 
-	    memberService.modifyMember(member);
-	    // 권한 정보 다시 조회
+	    // 프로필 사진 업로드 및 파일명 저장
+	    String fileName = savePicture(pictureFile, oldPicture);
+
+	    // 업로드된 사진이 있는 경우에만 파일명 업데이트
+	    if (!fileName.isEmpty()) {
+	        member.setMEMBER_PIC(fileName);
+	    }
+		 memberService.modifyMember(member);
+
 	    Member updatedMember = memberService.getMemberByMEMBER_ID(MEMBER_ID);
 	    model.addAttribute("member", updatedMember);
-
+	    
 	    // 계정 수정 완료 후 버튼 숨김 상태를 전달
 	    model.addAttribute("hideModifyButton", true);
-
 	    // mypage.jsp로 리다이렉트
 	    return "mypage/myPage";
 	}
+
+
+	
 }
 

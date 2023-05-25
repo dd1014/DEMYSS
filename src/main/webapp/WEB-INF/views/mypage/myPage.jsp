@@ -113,8 +113,7 @@
 						<div class="row" style="display: flex;">
 								<!-- 프로필 사진 -->
 								<div class="col-sm-6 grid-rows-1" style="margin-left:40px;">
-										<img src="/resource/img/a.jpg"
-												style="border: 5px solid #153A66; width: 180px; height: 160px; border-radius: 50%; margin: 20px; margin-left: 10px;" />
+										<div class="myPic" data-id="${member.MEMBER_ID }" style="border: 5px solid #153A66; width: 180px; height: 160px; border-radius: 50%; margin: 20px; margin-left: 10px;" ></div>
 								</div>
 								<div style="margin: 10px;">
 
@@ -327,7 +326,22 @@
 			
 			
 			
-			
+			window.onload=function(){
+			  	MemberPictureThumb('<%=request.getContextPath()%>');
+			  }
+			  
+			  
+			function MemberPictureThumb(contextPath){
+				   for(var target of document.querySelectorAll('.myPic')){   
+				      var id = target.getAttribute('data-id');
+				      
+				      target.style.backgroundImage="url('"+contextPath+"/member/getPicture?MEMBER_ID="+id+"')";            
+				      target.style.backgroundPosition="center";
+				      target.style.backgroundRepeat="no-repeat";
+				      target.style.backgroundSize="cover";
+				   }
+				}
+		
 			
 			
 		</script>
