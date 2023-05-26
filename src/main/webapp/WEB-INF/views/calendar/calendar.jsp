@@ -508,5 +508,4 @@ function addSchedule() {
  	
 	}
 
-
 </script>
