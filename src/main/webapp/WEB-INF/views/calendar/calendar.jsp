@@ -494,7 +494,6 @@ function CLOSE_mODAL(){
 	   $(".search_pj").css('display', "none");
 	}
 
-
 //1번모달에서 나머지 정보 입력후 최종 등록
 function addSchedule() {
 	var MEMBER_NUM = $('input[name="MEMBER_NUM"]').val();
