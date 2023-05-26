@@ -285,7 +285,9 @@ $(".timeSelector").flatpickr({
 			}
 		});
 	}); */
+	
 
+	
 	$(function() {
 		
 		
@@ -321,7 +323,10 @@ $(".timeSelector").flatpickr({
 					locale : 'ko',
 					nowIndicator : true,
 					dayMaxEvents : true,
-					/* select : function(info) {
+					dateClick : function(){
+						 alert('날짜클릭');
+					 },
+					/*function(info) {
 						var SC_NAME = prompt('일정을 입력해주세요.'); //날짜선택해서 saveData에 저장후 등록하기
 						if (SC_NAME) {
 							var event = {
@@ -394,7 +399,8 @@ $(".timeSelector").flatpickr({
 										failureCallback(xhr, status, error);
 									}
 								});
-					}
+					},
+					
 				});
 		//등록하기
 		/* function saveData(event) {
@@ -489,7 +495,6 @@ function CLOSE_mODAL(){
 	}
 
 
-
 //1번모달에서 나머지 정보 입력후 최종 등록
 function addSchedule() {
 	var MEMBER_NUM = $('input[name="MEMBER_NUM"]').val();
@@ -500,8 +505,6 @@ function addSchedule() {
  	jobForm.submit();
  	
  	alert('등록이 완료되었습니다.');
- 	
-
  	
 	}
 
