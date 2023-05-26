@@ -12,10 +12,27 @@
 #calendar {
 	height: 800px;
 	min-height: 500px;
-	width: 90%;
+	width: 100%;
 	margin-top:10px;
-	float:right;
+	/* float:right; */
 	
+}
+/* 일정추가버튼 */
+.addbtn {
+  cursor: pointer;
+  font-size: 15px;
+  width: 100px;
+  height: 40px;
+  background-color: #153A66;
+  color: white;
+  border-radius: 8px;
+}
+
+.addbtn:hover {
+  background-color: #f1f7ff;
+  color: #153A66;
+  border: 1px solid #153A66;
+  font-weight: bold;
 }
 
 #pj_modal, #cal_modal {

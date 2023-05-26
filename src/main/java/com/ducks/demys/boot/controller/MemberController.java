@@ -336,15 +336,16 @@ public class MemberController {
 	public String doModify(HttpSession session, Member member, MultipartFile pictureFile, String MEMBER_PIC, int MEMBER_NUM, String MEMBER_ID, String MEMBER_PW,
 	        String MEMBER_PHONE, String MEMBER_EMAIL, Model model) {
 	
-	    String oldPicture = memberService.getMemberByMEMBER_ID(member.getMEMBER_ID()).getMEMBER_PIC();
-
-	    // 프로필 사진 업로드 및 파일명 저장
-	    String fileName = savePicture(pictureFile, oldPicture);
-
-	    // 업로드된 사진이 있는 경우에만 파일명 업데이트
-	    if (!fileName.isEmpty()) {
-	        member.setMEMBER_PIC(fileName);
-	    }
+		/*
+		 * String oldPicture =
+		 * memberService.getMemberByMEMBER_ID(member.getMEMBER_ID()).getMEMBER_PIC();
+		 * 
+		 * // 프로필 사진 업로드 및 파일명 저장 String fileName = savePicture(pictureFile,
+		 * oldPicture);
+		 * 
+		 * // 업로드된 사진이 있는 경우에만 파일명 업데이트 if (!fileName.isEmpty()) {
+		 * member.setMEMBER_PIC(fileName); }
+		 */
 		 memberService.modifyMember(member);
 
 	    Member updatedMember = memberService.getMemberByMEMBER_ID(MEMBER_ID);

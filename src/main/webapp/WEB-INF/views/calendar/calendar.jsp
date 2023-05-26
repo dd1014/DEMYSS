@@ -32,8 +32,8 @@
 
 
 
-<div id='external-events' style="margin-top: 50px; float: left; width: 10%; padding-right: 30px; padding-left: 20px;">
-		<p>
+<div id='external-events' >
+		<!-- <p>
 				<strong>드래그로 달력에 표시</strong>
 		</p>
 
@@ -48,23 +48,22 @@
 		<p>
 				<input type='checkbox' id='drop-remove' />
 				<label for='drop-remove'>드래그 앤 드롭후 제거</label>
-		</p>
+		</p> -->
 
 
-		<div class="button_all">
+	
+</div>
+
+
+
+
+
+	<div class="button_all"style="width:100%;display:flex;justify-content:flex-end;position:relative;right:120px;margin-top:20px;">
 		<div>
-				<button onclick="openModal();" 
-						style="cursor: pointer; font-size: 15px; width: 100px; height: 40px; background-color: #153A66; color: white; border-radius: 8px;">
-						일정추가</button>
+				<button class="addbtn" onclick="openModal();" >
+						+ 일정추가</button>
 		</div>
 </div>
-</div>
-
-
-
-
-
-
 
 <!-- The button to open modal -->
  <!-- 일정추가 모달 -->
@@ -84,6 +83,7 @@
          <div class="cts-title-sub">* 일정을 등록하세요.</div>
          
          <form id="ScheduleForm">
+         <input type="hidden" class="MEMBER_NUM" name="MEMBER_NUM" id="MEMBER_NUM" value=${member.MEMBER_NUM } />
          <div style="margin-top:10px;"> 
          <div class="p-modal-serach regist_calendar">
             	<div class="col-xs-12" style="width:100%;">
@@ -94,7 +94,7 @@
          <div class="p-modal-serach regist_calendar">
             	<div class="time" style="width:100%;">
 								<div>
-										<label class="mo_sc_stdate" for="mo_sc_stdate" style="font-weight:bold;float:left;width:30%;">시작일자</label>
+									<label class="mo_sc_stdate" for="mo_sc_stdate" style="font-weight:bold;float:left;width:30%;">시작일자</label>
 										<input  style="float:left;width:50%;border:1px solid #ccc;" id="START" name="START" placeholder="시작일을 선택하세요" class="timeSelector" />
 								</div>
 						</div>
@@ -164,7 +164,7 @@
       </div>
          
          <div class="p-regi-modal-bts">
-                  <button class="p-regi-modal-bt" onclick="javascript:addSchedule();">등록</button>
+                  <button class="p-regi-modal-bt" type="button" onclick="addSchedule();">등록</button>
                   <button id="modal_close_btn2" class="p-regi-modal-bt" onclick="CLOSE_MODAL();">취소</button>
                   <!-- MEMBER NUM, NAME값 받을 공간 -->
                   <div class="add_member_id" ></div>
@@ -181,6 +181,7 @@
 <!-- 달력 -->
 <section class="mt-5">
 		<div class="container mx-auto px-3">
+		
 				<div id='calendar'></div>
 		</div>
 </section>
@@ -190,9 +191,10 @@
 <!-- 프로젝트 리스트 모달 -->
 
   <div id="pj_modal" class="search_pj">
-<input type="hidden" name="MEMBER_NUM" value="2" />
+<input type="hidden" name="MEMBER_NUM" value="${member.MEMBER_NUM }" />
 <%-- <input type="hidden" name="PJ_NUM" value="1" />
-<input type="hidden" name="PJ_NAME" value="${projects.PJ_NUM }" /> --%>
+ --%>
+ <input type="hidden" name="PJ_NAME" value="${projects.PJ_NUM }" />
     <div class="modal_content">
           <div class="flex" style="background-color: #153A66;">
                 <div class="navbar text-neutral-content modal-head">
@@ -319,7 +321,7 @@ $(".timeSelector").flatpickr({
 					locale : 'ko',
 					nowIndicator : true,
 					dayMaxEvents : true,
-					select : function(info) {
+					/* select : function(info) {
 						var SC_NAME = prompt('일정을 입력해주세요.'); //날짜선택해서 saveData에 저장후 등록하기
 						if (SC_NAME) {
 							var event = {
@@ -327,11 +329,12 @@ $(".timeSelector").flatpickr({
 								start : info.startStr,
 								end : info.endStr,
 								sc_NUM : info.sc_NUM,
+								mem_NUM : info.MEMBER_NUM
 							};
 							calendar.addEvent(event);
 							saveData(event);
 						}
-					},
+					}, */
 					//타이틀 클릭해서 삭제
 					eventClick : function(info) {
 						if (confirm('일정을 삭제하시겠습니까?')) {
@@ -365,7 +368,8 @@ $(".timeSelector").flatpickr({
 					
 					//달력에 리스트 출력
 					events : function(info, successCallback, failureCallback) {
-						var url = "/calendar/getCalendar";
+						 var MEMBER_NUM = $('input[name="MEMBER_NUM"]').val();
+						var url = "/calendar/getCalendar?MEMBER_NUM=" + MEMBER_NUM;
 						$.ajax({
 									type : 'GET',
 									cache : false,
@@ -380,7 +384,7 @@ $(".timeSelector").flatpickr({
 												title : date.sc_NAME,
 												start : date.sc_STARTDATE,
 												end : date.sc_ENDDATE,
-												sc_NUM : date.sc_NUM
+												sc_NUM : date.sc_NUM,
 											});
 										});
 
@@ -393,8 +397,10 @@ $(".timeSelector").flatpickr({
 					}
 				});
 		//등록하기
-		function saveData(event) {
-			var url = "/calendar/registCalendar";
+		/* function saveData(event) {
+			console.log(event);
+			 var MEMBER_NUM = $('input[name="MEMBER_NUM"]').val();
+			  var url = "/calendar/registCalendar?MEMBER_NUM=" + MEMBER_NUM;
 			$.ajax({
 				type : "POST",
 				url : url,
@@ -404,10 +410,10 @@ $(".timeSelector").flatpickr({
 					alert("일정이 등록되었습니다.");
 				},
 				error : function(xhr, status, error) {
-					alert("에러 발생: " + error);
+					alert("에러 발생: " + JSON.stringify(error));
 				}
 			});
-		}
+		} */
 		calendar.render();
 	});
 </script>
@@ -427,12 +433,9 @@ $(".timeSelector").flatpickr({
 <script>
 //모달안에서 프로젝트 선택 모달열기
 function searchPJ(){
-	console.log("1");
 	 $(".search_pj").css('display',"block");
-	 console.log("2");
 	 var MEMBER_NUM = $('input[name="MEMBER_NUM"]').val();
 	//alert(MEMBER_NUM);
-	console.log("3");
 	 $.ajax({
 		    url: "getModal_PJList",
 		    type: "get",
@@ -447,7 +450,6 @@ function searchPJ(){
 		        let template = Handlebars.compile($("#calendar-template").html());
 		        let html = template(projectList);
 		        table.append(html);
-		        console.log("4");
 		        table.find('tr').click(function () {
 		            var PJ_NUM = $(this).data('calendar-num');
 		            var PJ_NAME = $(this).find('td:first-child').text();
@@ -472,8 +474,8 @@ function searchPJ(){
 		            });
 
 		            // 선택된 값이 input 요소에 들어가도록 처리
-		            $("#mo_project-name").val(PJ_NAME);
-		            $("#mo_project-name").attr("data-pj-num", PJ_NUM);
+		            $("#PJ_NAME").val(PJ_NAME);
+		            $("#PJ_NAME").attr("data-pj-num", PJ_NUM);
 
 		            // 모달 창 닫기
 		           // $(".search_pj").css('display', "none");
@@ -490,27 +492,18 @@ function CLOSE_mODAL(){
 
 //1번모달에서 나머지 정보 입력후 최종 등록
 function addSchedule() {
-		alert('등록');
+	var MEMBER_NUM = $('input[name="MEMBER_NUM"]').val();
 		var jobForm = $('#ScheduleForm');
-		$.ajax({
-					type : "POST",
-					dataType: "json",
-					data : jobForm.serialize(),
-					url : "/calendar/registCalendar",
-					success : function(data) {
-						console.log(data);
-						alert('등록이 완료되었습니다.');
-					},
-					error : function(error) {
-						alert('error'+JSON.stringify(error));
-						
-					}
+	
+ 	jobForm.attr('action', 'registCalendar?MEMBER_NUM=' + MEMBER_NUM);
+ 	jobForm.attr('method', 'post');
+ 	jobForm.submit();
+ 	
+ 	alert('등록이 완료되었습니다.');
+ 	
 
-				});
-
+ 	
 	}
-
-
 
 
 

@@ -17,6 +17,10 @@ public class CalendarService {
 	}
 
 	public List<Calendar> getCalendarList(int MEMBER_NUM) {
+		int sq = calendarRepository.selectCalendarSequenceNextValue();
+		
+		System.out.println("번호:" + sq);
+		System.out.println("mem_:"+MEMBER_NUM);
 		return calendarRepository.getCalendarList(MEMBER_NUM);
     }
 	

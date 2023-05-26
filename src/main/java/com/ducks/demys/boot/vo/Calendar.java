@@ -8,6 +8,7 @@ import lombok.ToString;
 
 @Setter
 @Getter
+@ToString
 public class Calendar {
 	
 	private int SC_NUM;
