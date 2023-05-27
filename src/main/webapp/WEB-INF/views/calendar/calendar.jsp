@@ -32,33 +32,9 @@
 
 
 
-<div id='external-events' >
-		<!-- <p>
-				<strong>드래그로 달력에 표시</strong>
-		</p>
+<div id='external-events' ></div>
 
-		<div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-				<div class='fc-event-main' >프로젝트</div>
-		</div>
-		<div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-				<div class='fc-event-main'>개인업무</div>
-		</div>
-
-
-		<p>
-				<input type='checkbox' id='drop-remove' />
-				<label for='drop-remove'>드래그 앤 드롭후 제거</label>
-		</p> -->
-
-
-	
-</div>
-
-
-
-
-
-	<div class="button_all"style="width:100%;display:flex;justify-content:flex-end;position:relative;right:120px;margin-top:20px;">
+<div class="button_all"style="width:100%;display:flex;justify-content:flex-end;position:relative;right:120px;margin-top:20px;">
 		<div>
 				<button class="addbtn" onclick="openModal();" >
 						+ 일정추가</button>
@@ -229,9 +205,118 @@
 
 
 
+ <!-- 일정 디테일 모달 -->
+  <div id="cal_modal" class="modimodal_calendar">
+<input type="hidden" name="SC_NUM" value="${calendar.SC_NUM }" />	
+    <div class="modal_content">
+          <div class="flex" style="background-color: #153A66;">
+                <div class="navbar text-neutral-content modal-head">
+                      <div class="text-white modal-head-0">&nbsp;&nbsp;&nbsp;&nbsp;DEMYS PMS</div>
+                </div>
+          </div>
+
+      <div class="cts-view">
+         <div class="cts-title">
+            <span>일정</span>
+         </div>
+         
+         <form id="modi_ScheduleForm">
+         <input type="hidden" class="MEMBER_NUM" name="MEMBER_NUM" id="MEMBER_NUM" value=${member.MEMBER_NUM } />
+         <div style="margin-top:40px;"> 
+         <div class="p-modal_modi-serach modi_calendar">
+            	<div class="col-xs-12" style="width:100%;">
+								<label class="mo_sc_name" for="mo_sc_name" style="font-weight:bold;float:left;width:30%;">일정명</label>
+								<input  readonly class="inputModal"  style="float:left;width:50%;border:1px solid #ccc;" type="text" name="sc_NAME" id="sc_NAME" required="required" />
+						</div>
+         </div>
+         <div class="p-modal_modi-serach modi_calendar">
+            	<div class="time" style="width:100%;">
+								<div>
+									<label class="mo_sc_stdate" for="mo_sc_stdate" style="font-weight:bold;float:left;width:30%;">시작일자</label>
+										<input readonly value="${calendar.START }" style="float:left;width:50%;border:1px solid #ccc;" id="start" name="start" type="text"  />
+								</div>
+						</div>
+         </div>
+         <div class="p-modal_modi-serach modi_calendar">
+            	<div class="time" style="width:100%;">
+								<div>
+										<label class="mo_sc_stdate" for="mo_sc_stdate" style="font-weight:bold;float:left;width:30%;">종료일자</label>
+										<input readonly value="${calendar.END }" style="float:left;width:50%;border:1px solid #ccc;" id="end" name="end" type="text"  />
+								</div>
+						</div>
+         </div>
+              <!-- 프로젝트 선택 시 프로젝트 조회 버튼 -->
+		
+		  <div class="p-modal_modi-serach modi_calendar">
+		    <div style="width:100%;">
+		      <div>
+		        <label class="col-xs-4" for="PJ_NAME" style="font-weight:bold;float:left;width:30%;">프로젝트명</label>
+		        <input readonly class="inputModal" value="${calendar.PJ_NAME}" style="float:left;width:50%;border:1px solid #ccc;" id="pj_NAME" name="pj_NAME" type="text" />
+		      </div>
+		    </div>
+		  </div>
+
+		
+		<div class="p-modal_modi-serach modi_calendar">
+            	<div style="width:100%;">
+								<div>
+										<label class="col-xs-4" for="sc_TYPE" style="font-weight:bold;float:left;width:30%;">일정구분</label>
+										<input readonly value="${calendar.SC_TYPE }" style="float:left;width:50%;border:1px solid #ccc;" id="sc_TYPE" name="sc_TYPE" type="text"  />
+								</div>
+						</div>
+         </div>
+         
+		
+		<div class="p-modal_modi-serach modi_calendar">
+            	<div style="width:100%;">
+								<div>
+										<label class="col-xs-4" for="sc_IMP" style="font-weight:bold;float:left;width:30%;">중요도</label>
+										<input readonly value="${calendar.SC_IMP }" style="float:left;width:50%;border:1px solid #ccc;" id="sc_IMP" name="sc_IMP" type="text"  />
+								</div>
+						</div>
+         </div>
+         
+    
+            <div class="p-modal_modi-serach modi_calendar">
+            	<div class="col-xs-12" style="width:100%;">
+								<label class="col-xs-4" for="sc_PLACE" style="font-weight:bold;float:left;width:30%;">장소</label>
+								<input readonly value="${calendar.SC_PLACE }" class="inputModal" type="text" name="sc_PLACE" id="sc_PLACE" style="float:left;width:50%;border:1px solid #ccc;" />
+						</div>
+         </div>
+         <div class="p-modal_modi-serach modi_calendar">
+            	<div class="col-xs-12" style="width:100%;">
+								<label class="col-xs-4" for="SC_CONTENT" style="font-weight:bold;float:left;width:30%;">내용</label>
+								<textarea readonly value="${calendar.SC_CONTENT }" rows="4" cols="50" class="textarea textarea-bordered" name="sc_CONTENT" id="sc_CONTENT" style="float:left;width:50%;border:1px solid #ccc;"></textarea>
+						</div>
+         </div>
+      </div>
+         
+         <div class="p-regi-modal-bts" style="margin-top:20px;">
+                  <button class="p-regi-modal-bt" type="button" onclick="modiSchedule();">수정</button>
+                  <button class="p-regi-modal-bt" type="button" onclick="deleteSchedule();">삭제</button>
+                  <button id="modal_close_btn2" class="p-regi-modal-bt" onclick="CLOSE_MODAL();">취소</button>
+                  <!-- MEMBER NUM, NAME값 받을 공간 -->
+                  <div class="add_member_id" ></div>
+            </div>
+            </form>
+      </div>
+    </div>
+
+    <div class="modal_layer"></div>
+</div>
+
+
+
 <script>
 
-//프로젝트 옵션 선택 이벤트 핸들러
+
+
+
+
+
+
+
+//프로젝트 옵션 선택 이벤트 핸들러(등록모달)
 document.getElementById("SC_STATUS").addEventListener("change", function() {
   var selectedOption = this.value; // 선택된 옵션 값 가져오기
   var projectSearchContainer = document.querySelector(".p-modal-search.regist_calendar");
@@ -245,14 +330,34 @@ document.getElementById("SC_STATUS").addEventListener("change", function() {
   }
 }); 
 
+/* 
+//프로젝트 옵션 선택 이벤트 핸들러(수정모달)
+document.getElementById("MODI_SC_STATUS").addEventListener("change", function() {
+var selectedOption = this.value; // 선택된 옵션 값 가져오기
+var projectSearchContainer = document.querySelector(".p-modal_modi-search.modi_calendar");
+
+if (selectedOption === "1") {
+  // 프로젝트 옵션을 선택한 경우 프로젝트 입력란 표시
+  projectSearchContainer.style.display = "block";
+} else {
+  // 다른 옵션을 선택한 경우 프로젝트 입력란 숨김
+  projectSearchContainer.style.display = "none";
+}
+}); */ 
 
 //일정추가 모달열기
-
 function openModal() {
 	 $(".modal_calendar").css('display',"block");
 	}
 	function CLOSE_MODAL(){
 	   $(".modal_calendar").css('display', "none");
+	}
+//일정디테일 모달열기
+function open_detailModal() {
+	 $(".modimodal_calendar").css('display',"block");
+	}
+	function CLOSE_detailMODAL(){
+	   $(".modimodal_calendar").css('display', "none");
 	}
 
 // 타임피커 생성
@@ -274,19 +379,7 @@ $(".timeSelector").flatpickr({
 <!-- 달력 -->
 <script>
 
-
-/* $(function() {//프로젝트선택시 프로젝트명 input보이기
-		$('#mo_sc_status').on('change', function() {
-			var selectedValue = $(this).val();
-			if (selectedValue === '1') {
-				$('#projectNameContainer').show();
-			} else {
-				$('#projectNameContainer').hide();
-			}
-		});
-	}); */
-	
-
+var SC_PK="";
 	
 	$(function() {
 		
@@ -323,52 +416,55 @@ $(".timeSelector").flatpickr({
 					locale : 'ko',
 					nowIndicator : true,
 					dayMaxEvents : true,
-					dateClick : function(){
-						 alert('날짜클릭');
-					 },
-					/*function(info) {
-						var SC_NAME = prompt('일정을 입력해주세요.'); //날짜선택해서 saveData에 저장후 등록하기
-						if (SC_NAME) {
-							var event = {
-								sc_NAME : SC_NAME,
-								start : info.startStr,
-								end : info.endStr,
-								sc_NUM : info.sc_NUM,
-								mem_NUM : info.MEMBER_NUM
-							};
-							calendar.addEvent(event);
-							saveData(event);
-						}
-					}, */
 					//타이틀 클릭해서 삭제
 					eventClick : function(info) {
-						if (confirm('일정을 삭제하시겠습니까?')) {
-							var SC_NUM = info.event.extendedProps.sc_NUM;
-							//alert(SC_NUM);
-							$.ajax({
-									type : 'POST',
-									url : '/calendar/removeCalendar',
-									data : {
-										sc_NUM : SC_NUM
-									},
-									dataType : 'json',
-									contentType : "application/x-www-form-urlencoded; charset=UTF-8",
-									success : function(data) {
-										if (data.success) {
-											info.event.remove();
-											alert(data.msg);
-										} else {
-											if (data.msg) {
-												alert(data.msg);
-											}
-										}
-									},
-									error : function(xhr, status, error) {
-										alert('삭제가 완료되었습니다. ');
-										window.location.reload();
-									}
-								});
-						}
+						//alert("click");
+						open_detailModal();
+						
+						  // AJAX 요청 보내기
+						var SC_NUM = info.event.extendedProps.sc_NUM;
+						SC_PK = SC_NUM;
+						  $.ajax({
+						    url: "/calendar/getCalendardetail?SC_NUM="+SC_NUM,  // 요청할 경로 설정
+						    type: "GET",  // 요청 방식 (GET 또는 POST)
+						    dataType: "json",  // 응답 데이터 타입 설정
+						    success: function(data) {
+						      // AJAX 요청이 성공했을 때 실행되는 콜백 함수
+						     // alert('성공');  // 응답 데이터를 콘솔에 출력
+						      var detail_sc_NAME = data[0].sc_NAME;  // 응답 데이터에서 원하는 속성 값 가져오기
+						      var detail_START = data[0].sc_STARTDATE;  // 응답 데이터에서 원하는 속성 값 가져오기
+						      var detail_END = data[0].sc_ENDDATE;  // 응답 데이터에서 원하는 속성 값 가져오기
+						      var detail_sc_TYPE = data[0].sc_TYPE;  // 응답 데이터에서 원하는 속성 값 가져오기
+						      var detail_sc_IMP = data[0].sc_IMP;  // 응답 데이터에서 원하는 속성 값 가져오기
+						      var detail_sc_PLACE = data[0].sc_PLACE;  // 응답 데이터에서 원하는 속성 값 가져오기
+						      var detail_sc_CONTENT = data[0].sc_CONTENT;  // 응답 데이터에서 원하는 속성 값 가져오기
+						      var detail_pj_NAME = data[0].pj_NAME;  // 응답 데이터에서 원하는 속성 값 가져오기
+						      
+						      // 가져온 값으로 input의 value 설정
+						      $('#sc_NAME').val(detail_sc_NAME);
+						      $('#start').val(detail_START);
+						      $('#end').val(detail_END);
+						      $('#sc_TYPE').val(detail_sc_TYPE);
+						      $('#sc_IMP').val(detail_sc_IMP);
+						      $('#sc_PLACE').val(detail_sc_PLACE);
+						      $('#sc_CONTENT').val(detail_sc_CONTENT);
+						      $('#pj_NAME').val(detail_pj_NAME);
+						      
+						   // 프로젝트명이 null이 아닐 때 input 칸 보이기
+						      if (detail_pj_NAME !== null) {
+						         $('#pj_NAME').val(detail_pj_NAME);
+						         $('#pj_NAME').show();
+						      }
+						     
+						    },
+						    error: function(xhr, status, error) {
+						      // AJAX 요청이 실패했을 때 실행되는 콜백 함수
+						     alert("에러 발생: " + error); // 에러 메시지를 콘솔에 출력
+
+						      // TODO: 에러 처리 로직을 작성
+						    }
+						  });
+						 
 					},
 					
 					//달력에 리스트 출력
@@ -402,24 +498,8 @@ $(".timeSelector").flatpickr({
 					},
 					
 				});
-		//등록하기
-		/* function saveData(event) {
-			console.log(event);
-			 var MEMBER_NUM = $('input[name="MEMBER_NUM"]').val();
-			  var url = "/calendar/registCalendar?MEMBER_NUM=" + MEMBER_NUM;
-			$.ajax({
-				type : "POST",
-				url : url,
-				data : JSON.stringify(event),
-				contentType : "application/json",
-				success : function(data) {
-					alert("일정이 등록되었습니다.");
-				},
-				error : function(xhr, status, error) {
-					alert("에러 발생: " + JSON.stringify(error));
-				}
-			});
-		} */
+
+
 		calendar.render();
 	});
 </script>
@@ -437,6 +517,7 @@ $(".timeSelector").flatpickr({
 </script>
 
 <script>
+//==========================================================================//
 //모달안에서 프로젝트 선택 모달열기
 function searchPJ(){
 	 $(".search_pj").css('display',"block");
@@ -488,12 +569,11 @@ function searchPJ(){
 		        });
 		    }
 		}); 
-	
 } 
 function CLOSE_mODAL(){
 	   $(".search_pj").css('display', "none");
 	}
-
+//=======================================================================//
 //1번모달에서 나머지 정보 입력후 최종 등록
 function addSchedule() {
 	var MEMBER_NUM = $('input[name="MEMBER_NUM"]').val();
@@ -506,5 +586,47 @@ function addSchedule() {
  	alert('등록이 완료되었습니다.');
  	
 	}
+	
+//=============================================================================//
+//수정(아직안해봄ㅎㅎ)
+function modiSchedule(){
+	var MEMBER_NUM = $('input[name="MEMBER_NUM"]').val();
+	var modi_Form = $('#modi_ScheduleForm');
+	
+	modi_Form.attr('action','modifyCalendar');
+	modi_Form.attr('method','post');
+	modi_Form.submit
+	
+}	
+//==============================================================================
+//일정 삭제	
+function deleteSchedule() {
+	  alert('일정을 삭제하시겠습니까?');
+    var SC_NUM = SC_PK;
+     //alert(SC_NUM);
+    $.ajax({
+       type: 'POST',
+       url: '/calendar/removeCalendar',
+       data: {
+          sc_NUM: SC_NUM
+       },
+       dataType: 'json',
+       success: function(data) {
+          if (data.success) {
+             info.event.remove();
+             alert(data.msg);
+          } else {
+             if (data.msg) {
+                alert(data.msg);
+             }
+          }
+       },
+	      error: function(xhr, status, error) {
+	         alert('삭제가 완료되었습니다.');
+	         window.location.reload();
+	      }
+	   });
+	}
+
 
 </script>

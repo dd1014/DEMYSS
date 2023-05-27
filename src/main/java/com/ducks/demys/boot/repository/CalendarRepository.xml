@@ -32,6 +32,19 @@
         WHERE C.MEMBER_NUM = #{MEMBER_NUM}
 		ORDER BY SC_NUM;
 	</select>
-  
-
+  	
+  	<update id="modifyCalendar" parameterType="Calendar">
+		UPDATE CALENDAR 
+		SET 
+		SC_NAME=#{SC_NAME},START=TO_DATE(#{START, jdbcType=VARCHAR},'YYYY-MM-DD HH24:MI:SS'),END= TO_DATE(#{END, jdbcType=VARCHAR},'YYYY-MM-DD HH24:MI:SS'),SC_STATUS=#{SC_STATUS},PJ_NAME=#{PJ_NAME},SC_TYPE=#{SC_TYPE},SC_IMP=#{SC_IMP},SC_CONTENT=#{SC_CONTENT},MEMBER_UPDATEDATE=SYSDATE
+		WHERE SC_NUM=#{SC_NUM}
+	</update>
+	
+	<select id="getCalendardetail" resultType="Calendar">
+		SELECT c.*
+		FROM CALENDAR c
+		WHERE SC_NUM=#{SC_NUM, jdbcType=INTEGER}
+	</select>
+	
+	
     </mapper>

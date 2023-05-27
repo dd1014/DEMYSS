@@ -126,6 +126,25 @@
                   <input name="MEMBER_PIC" id="MEMBER_PIC" type="hidden" value="${member.MEMBER_PIC }" >
                </div>
 					
+					
+					
+					<div class="row">	
+					<input type="hidden" name="oldPicture"  value="${member.picture }"/>				
+					<input type="file" id="inputFile" onchange="changePicture_go();" name="picture" style="display:none" />
+					<div class="input-group col-md-12">
+						<div class="col-md-12" style="text-align: center;">
+							<div class="manPicture" data-id="${member.id }" id="pictureView" style="border: 1px solid green; height: 200px; width: 140px; margin: 0 auto; margin-bottom:5px;"></div>														
+							<div class="input-group input-group-sm">
+								<label for="inputFile" class=" btn btn-warning btn-sm btn-flat input-group-addon">사진변경</label>
+								<input id="inputFileName" class="form-control" type="text" name="tempPicture" disabled
+									value="${member.picture.split("\\$\\$")[1] }"/>
+								<input id="picture" class="form-control" type="hidden" name="uploadPicture" />
+							</div>						
+						</div>												
+					</div>
+				</div>	
+				
+					
 				
 						<!-- 프로필 사진 -->
 						<div class="col-sm-6 grid-rows-1">

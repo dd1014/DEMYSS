@@ -42,6 +42,18 @@ public class CalendarController {
 
       return calendar;
    }
+   
+   @RequestMapping("/calendar/getCalendardetail")
+   @ResponseBody
+   public List<Calendar> getCalendardetail(@RequestParam("SC_NUM") int SC_NUM) {
+	   
+	   List<Calendar> calendar = calendarService.getCalendardetail(SC_NUM);
+	   System.out.println(calendar);
+	   	   
+	   return calendar;
+   }
+   
+      
          
    @PostMapping("/calendar/registCalendar")
    public String registCalendar(Calendar sc) {
@@ -66,6 +78,18 @@ public class CalendarController {
       List<Projects> projectList = projectsService.getPJCalList(MEMBER_NUM);
       model.addAttribute("projectList",projectList);
        return projectList;
+   }
+   
+   @RequestMapping("/calendar/modifyCalendar")
+   @ResponseBody
+   public String modifyCalendar(Model model, Calendar sc,int SC_NUM, String SC_NAME,String START,String END,int SC_STATUS,String PJ_NAME,String SC_TYPE,int SC_IMP,String SC_CONTENT ) {
+       calendarService.modifyCalendar(sc);
+       
+       List<Calendar> updateCalendar = calendarService.getCalendarList(SC_NUM);
+       model.addAttribute("updateCalendar", updateCalendar);
+       
+       return "calendar/calendar";
+       
    }
    
 }

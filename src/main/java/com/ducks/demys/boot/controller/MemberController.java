@@ -330,7 +330,7 @@ public class MemberController {
 			
 		return "mypage/modify";
 	}
-
+	
 	//수정함	//수정중..
 	@PostMapping("/mypage/doModify")
 	public String doModify(HttpSession session, Member member, MultipartFile pictureFile, String MEMBER_PIC, int MEMBER_NUM, String MEMBER_ID, String MEMBER_PW,
