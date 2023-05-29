@@ -1,5 +1,6 @@
 package com.ducks.demys.boot.repository;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -22,6 +23,7 @@ public interface CalendarRepository {
 	public void removeCalendar(int SC_NUM);
 
 	public void modifyCalendar(Calendar sc);
+
 
 
 	

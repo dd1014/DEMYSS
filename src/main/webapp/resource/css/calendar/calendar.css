@@ -35,14 +35,32 @@
   font-weight: bold;
 }
 
-#pj_modal, #cal_modal {
+ #cal_modal {
    display: none;
    position: relative;
    width: 100%;
    z-index: 3;
 }
 
+#pj_modal{
+   display: none;
+   position: relative;
+   width: 100%;
+   z-index: 6;
+}
+
+#modi_pj_modal, #modi_cal_modal {
+   display: none;
+   position: relative;
+   width: 100%;
+   z-index: 5;
+}
+
 #pj_modal h2, #cal_modal h2 {
+   margin: 0;
+}
+
+#modi_pj_modal h2, #modi_cal_modal h2 {
    margin: 0;
 }
 /* 모달창 크기 조절 */
@@ -56,8 +74,29 @@
    transform: translate(-50%, -50%);
    position: fixed;
 }
+/* 모달창 크기 조절 */
+#modi_pj_modal .modal_content, #modi_cal_modal .modal_content {
+   width: 500px;
+   height: 700px; 
+   top: 50%; 
+   background: #fff;
+   border: 2px solid #666;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   position: fixed;
+}
 /* 모달창 뒷 배경 */
 #pj_modal .modal_layer, #cal_modal .modal_layer {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background: rgba(0, 0, 0, 0.5);
+   z-index: -3;
+}
+/* 모달창 뒷 배경 */
+#modi_pj_modal .modal_layer, #modi_cal_modal .modal_layer {
    position: fixed;
    top: 0;
    left: 0;
@@ -152,7 +191,7 @@
     min-height: 35px;
 }
 
-/* 수정폼 */
+/* 디테일폼 */
 .p-modal_modi-serach{
    display:flex;
    flex-direction:row;
@@ -172,6 +211,36 @@
     display: flex;
 }
 .p-modal_modi-searchbar-input{
+   width:85%;
+   height: 35px;
+    min-height: 35px;
+}
+.p-cts-select{
+   height: 30px;
+    min-height: 30px;
+    width: 22%;
+    margin-right:10px;
+}
+/* 수정폼 */
+.p-Modify_modal-serach{
+   display:flex;
+   flex-direction:row;
+   width:100%;
+    align-items: center;
+    margin:5px 40px;
+    
+    /* border: 1px solid #aaaaaa; */
+    /* border-radius: 5px; */
+    padding: 5px;
+    text-align: left;
+}
+
+.p-Modify_modal-searchbar{
+   width: 100%;
+   height:100%;
+    display: flex;
+}
+.p-Modify_modal-searchbar-input{
    width:85%;
    height: 35px;
     min-height: 35px;

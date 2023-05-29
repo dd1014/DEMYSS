@@ -30,7 +30,10 @@ public class Calendar {
 	private String title;
 	
 	private String PJ_NAME;
-
+	
+	private String BACKGROUNDCOLOR;
+	private String TEXTCOLOR;
+	private String BORDERCOLOR;
 
 
 }

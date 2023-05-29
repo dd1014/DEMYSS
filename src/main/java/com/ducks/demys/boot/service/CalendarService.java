@@ -1,5 +1,6 @@
 package com.ducks.demys.boot.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -18,15 +19,10 @@ public class CalendarService {
 
 	public List<Calendar> getCalendarList(int MEMBER_NUM) {
 		int sq = calendarRepository.selectCalendarSequenceNextValue();
-		
-		System.out.println("번호:" + sq);
-		System.out.println("mem_:"+MEMBER_NUM);
 		return calendarRepository.getCalendarList(MEMBER_NUM);
     }
 	
 	public List<Calendar> getCalendardetail(int SC_NUM) {
-		
-		System.out.println("sc:"+SC_NUM);
 		
 		return calendarRepository.getCalendardetail(SC_NUM);
 	}
@@ -34,15 +30,6 @@ public class CalendarService {
 	 public void registCalendar(Calendar sc) {
 		 sc.setSC_NUM(calendarRepository.selectCalendarSequenceNextValue());
 
-		 System.out.println("번호 : "+sc.getSC_NUM());
-		 System.out.println("제목 : "+sc.getSC_NAME());
-		 System.out.println("내용 : "+sc.getSC_CONTENT());
-		 System.out.println("중요도 : "+sc.getSC_IMP());
-		 System.out.println("장소 : "+sc.getSC_PLACE());
-		 System.out.println("구분 : "+sc.getSC_STATUS());
-		 System.out.println("일정구분 : "+sc.getSC_TYPE());
-		    System.out.println("시작 : "+sc.getSTART());
-		    System.out.println("끝 : "+sc.getEND());
 	        calendarRepository.registGo(sc);
 	    }
 
@@ -54,8 +41,15 @@ public class CalendarService {
 		return calendarRepository.getModal_PJList(MEMBER_NUM);
     }
 	public void modifyCalendar(Calendar sc) {
-		calendarRepository.modifyCalendar(sc);
+
+		 calendarRepository.modifyCalendar(sc);
+		 System.out.println("서비스 start:"+sc.getSTART());
+		 System.out.println("서비스 startdate:"+sc.getSC_STARTDATE());
 	}
+
+
+
+
 
 	
 }

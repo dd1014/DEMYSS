@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -48,7 +49,6 @@ public class CalendarController {
    public List<Calendar> getCalendardetail(@RequestParam("SC_NUM") int SC_NUM) {
 	   
 	   List<Calendar> calendar = calendarService.getCalendardetail(SC_NUM);
-	   System.out.println(calendar);
 	   	   
 	   return calendar;
    }
@@ -74,22 +74,23 @@ public class CalendarController {
    @RequestMapping("/calendar/getModal_PJList")
    @ResponseBody
    public List<Projects> getModal_PJList(Model model, @RequestParam("member_NUM")int MEMBER_NUM) {
-      Member member = memberService.getMemberByMEMBER_NUM(MEMBER_NUM);
+	   Member member = memberService.getMemberByMEMBER_NUM(MEMBER_NUM);
       List<Projects> projectList = projectsService.getPJCalList(MEMBER_NUM);
       model.addAttribute("projectList",projectList);
+      System.out.println(projectList);
+      
        return projectList;
    }
    
+   
+   
    @RequestMapping("/calendar/modifyCalendar")
    @ResponseBody
-   public String modifyCalendar(Model model, Calendar sc,int SC_NUM, String SC_NAME,String START,String END,int SC_STATUS,String PJ_NAME,String SC_TYPE,int SC_IMP,String SC_CONTENT ) {
+   public void modifyCalendar(@RequestBody Calendar sc) {
        calendarService.modifyCalendar(sc);
-       
-       List<Calendar> updateCalendar = calendarService.getCalendarList(SC_NUM);
-       model.addAttribute("updateCalendar", updateCalendar);
-       
-       return "calendar/calendar";
-       
+       System.out.println(sc);
+       System.out.println("start :"+sc.getSTART());
+       System.out.println("startdate :"+sc.getSC_STARTDATE());
    }
    
 }
